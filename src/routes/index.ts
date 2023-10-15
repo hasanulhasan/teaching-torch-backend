@@ -1,6 +1,8 @@
 import express from 'express'
 import { productRoutes } from '../app/product/products.routes';
 import { orderRoutes } from '../app/order/order.routes';
+import { userRoutes } from '../app/user/user.routes';
+import { feedbackRoutes } from '../app/feedback/feedback.routes';
 const routers = express.Router();
 
 const moduleRoutes = [
@@ -11,6 +13,14 @@ const moduleRoutes = [
   {
     path: '/orders',
     route: orderRoutes
+  },
+  {
+    path: '/users',
+    route: userRoutes
+  },
+  {
+    path: '/feedbacks',
+    route: feedbackRoutes
   }
 ]
 
