@@ -1,5 +1,6 @@
 export default interface IOrder {
   title: string;
+  instructors: string[];
   img: string;
   price: string;
   category: string;

@@ -16,3 +16,13 @@ export const getProduct = async (id: string)=> {
   const products = await Product.findById(id);
   return products;
 }
+
+export const deleteProduct = async (id: string)=> {
+  const product = await Product.findByIdAndDelete(id);
+  return product;
+}
+
+export const updateProduct = async (id: string, payload:Partial<IProduct>)=> {
+  const product = await Product.findOneAndUpdate({_id: id}, payload, {new:true});
+  return product;
+}

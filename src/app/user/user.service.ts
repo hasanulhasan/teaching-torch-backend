@@ -11,3 +11,13 @@ export const getUser = async (id: string)=> {
   const user = await User.findById(id);
   return user;
 }
+
+export const getUsers = async ()=> {
+  const users = await User.find({});
+  return users;
+}
+
+export const deleteUser = async (id: string)=> {
+  const user = await User.findByIdAndDelete(id);
+  return user;
+}

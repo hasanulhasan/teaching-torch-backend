@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { createUserToDB, getUser } from "./user.service";
+import { createUserToDB, deleteUser, getUser, getUsers } from "./user.service";
 
 export const createUserIntoDB = async (req: Request, res: Response, next: NextFunction)=> {
   const data = req.body;
@@ -23,4 +23,26 @@ export const getSingleUser = async (req: Request, res: Response, next: NextFunct
     }
   )
   console.log(`user fetched`)
+}
+export const getAllUser = async (req: Request, res: Response, next: NextFunction) => {
+  const users = await getUsers();
+  res.status(200).json(
+    {
+      status: 'success',
+      data: users
+    }
+  )
+  console.log(`users fetched`)
+}
+
+export const deleteSingleUser = async (req: Request, res: Response, next: NextFunction) => {
+  const id = req.params.id;
+  const user = await deleteUser(id);
+  res.status(200).json(
+    {
+      status: 'success',
+      data: user
+    }
+  )
+  console.log('user deleted')
 }

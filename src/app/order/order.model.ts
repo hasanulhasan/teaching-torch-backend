@@ -4,6 +4,7 @@ import IOrder from "./order.interface";
 
 export const bookSchema = new Schema<IOrder>({
   title: { type: String, required: true },
+  instructors: [{ type: String }],
   img: { type: String, required: true },
   price: { type: String, required: true },
   category: { type: String, required: true },
@@ -13,8 +14,8 @@ export const bookSchema = new Schema<IOrder>({
   description: { type: String, required: true },
   features: [{ type: String }],
   reviews: [{ type: String }],
-  isPaid: [{ type: Boolean }],
-  userEmail: [{ type: String }]
+  isPaid: { type: Boolean, required: true },
+  userEmail: { type: String, required: true }
 });
 
 export const Order = model<IOrder>('Order', bookSchema);

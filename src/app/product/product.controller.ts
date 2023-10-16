@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { createProductToDB, getProduct, getProducts } from "./product.service";
+import { createProductToDB, deleteProduct, getProduct, getProducts, updateProduct } from "./product.service";
 
 export const createProductIntoDB = async (req: Request, res: Response, next: NextFunction)=> {
   const data = req.body;
@@ -34,4 +34,29 @@ export const getSingleProduct = async (req: Request, res: Response, next: NextFu
     }
   )
   console.log(`product fetched`)
+}
+
+export const deleteSingleProduct = async (req: Request, res: Response, next: NextFunction) => {
+  const id = req.params.id;
+  const product = await deleteProduct(id);
+  res.status(200).json(
+    {
+      status: 'success',
+      data: product
+    }
+  )
+  console.log('product deleted')
+}
+
+export const updateSingleProduct = async (req: Request, res: Response, next: NextFunction) => {
+  const id = req.params.id;
+  const updatedData = req.body;
+  const product = await updateProduct(id,updatedData);
+  res.status(200).json(
+    {
+      status: 'success',
+      data: product
+    }
+  )
+  console.log('product updated')
 }

@@ -3,5 +3,5 @@ export default interface IFeedback {
   userName: string;
   userEmail: string;
   rating: string;
-  comments: string;
+  comment: string;
 }

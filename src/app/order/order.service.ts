@@ -7,7 +7,17 @@ export const createOrderToDB = async (payload: IOrder): Promise<IOrder>=> {
   return order
 }
 
-export const getOrderedProduct = async ()=> {
+export const getOrders = async ()=> {
   const orders = await Order.find({});
   return orders;
+}
+
+export const getOrder = async (id: string)=> {
+  const order = await Order.findById(id);
+  return order;
+}
+
+export const deleteOrder = async (id: string)=> {
+  const order = await Order.findByIdAndDelete(id);
+  return order;
 }
