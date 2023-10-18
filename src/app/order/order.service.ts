@@ -21,3 +21,8 @@ export const deleteOrder = async (id: string)=> {
   const order = await Order.findByIdAndDelete(id);
   return order;
 }
+
+export const updateOrder = async (id: string, payload:Partial<IOrder>)=> {
+  const order = await Order.findOneAndUpdate({_id: id}, payload, {new:true});
+  return order;
+}

@@ -21,3 +21,8 @@ export const deleteUser = async (id: string)=> {
   const user = await User.findByIdAndDelete(id);
   return user;
 }
+
+export const updateUser = async (id: string, payload:Partial<IUser>)=> {
+  const user = await User.findOneAndUpdate({_id: id}, payload, {new:true});
+  return user;
+}

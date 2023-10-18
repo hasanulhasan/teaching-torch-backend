@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { createUserToDB, deleteUser, getUser, getUsers } from "./user.service";
+import { createUserToDB, deleteUser, getUser, getUsers, updateUser } from "./user.service";
 
 export const createUserIntoDB = async (req: Request, res: Response, next: NextFunction)=> {
   const data = req.body;
@@ -45,4 +45,17 @@ export const deleteSingleUser = async (req: Request, res: Response, next: NextFu
     }
   )
   console.log('user deleted')
+}
+
+export const updateSingleUser = async (req: Request, res: Response, next: NextFunction) => {
+  const id = req.params.id;
+  const updatedData = req.body;
+  const user = await updateUser(id,updatedData);
+  res.status(200).json(
+    {
+      status: 'success',
+      data: user
+    }
+  )
+  console.log('user updated')
 }
